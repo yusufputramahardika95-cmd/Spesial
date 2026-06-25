@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Fika ✨</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe4e1 0%, #f3e5f5 50%, #e8eaf6 100%);
+            min-height: 100vh;
+            display: block;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Efek Balon Hujan */
+        .balloon {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            bottom: -50px;
+            opacity: 0.7;
+            animation: floatUp 8s infinite linear;
+            z-index: 1;
+        }
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 13px;
+            width: 4px;
+            height: 8px;
+            background: rgba(0,0,0,0.2);
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); bottom: -50px; }
+            100% { transform: translateY(-110vh) rotate(20deg); }
+        }
+
+        /* Kontainer Utama */
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Tampilan Kejutan Awal (Kue Ultah) */
+        .surprise-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+            border: 2px solid #fff;
+            animation: scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        .cake {
+            font-size: 80px;
+            margin: 20px 0;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .cake:hover {
+            transform: scale(1.1);
+        }
+        .hint-text {
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        /* Tombol Utama */
+        .btn-surprise {
+            background: linear-gradient(45deg, #ff6b81, #ff4757);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn-surprise:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 129, 0.6);
+        }
+
+        /* Konten Surat Ucapan (Sembunyi dulu) */
+        .letter-box {
+            display: none;
+            background: white;
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-top: 8px solid #ff6b81;
+            text-align: left;
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .letter-box h1 {
+            color: #ff6b81;
+            text-align: center;
+            font-size: 26px;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        .sub-title {
+            text-align: center;
+            color: #70a1ff;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+        .letter-content {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+            white-space: pre-line; /* Menjaga ketikan enter tetap rapi */
+        }
+        
+        .heart-icon {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Animasi */
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="balloon-container"></div>
+
+    <div class="container">
+        <div class="surprise-box" id="boxAwal">
+            <h2 style="color: #ff6b81; margin-top: 0;">Hai Fika! Ada sesuatu buat kamu... ✨</h2>
+            <div class="cake" id="tombolKue" onclick="bukaKejutan()">🎂</div>
+            <p class="hint-text">Klik kuenya atau tombol di bawah buat tiup lilin & lihat kejutannya!</p>
+            <button class="btn-surprise" onclick="bukaKejutan()">Buka Kejutan 💌</button>
+        </div>
+
+        <div class="letter-box" id="boxSurat">
+            <h1>Selamat Ulang Tahun, Fikaa! 🎉</h1>
+            <div class="sub-title">✨ HAPPY 14th BIRTHDAY ✨</div>
+            
+            <div class="letter-content">
+                Selamat yah hari ini usiamu menjadi 14 tahun. Semoga rezeki kamu dilancarkan selalu dan segala urusan kamu dipermudahkan dan semoga cita - cita mu tercapai serta segala impian mu terkabulkan, dan juga semoga tuhan selalu memberikan kesehatan umur panjang untuk kamu.
+
+                Aku berharap semoga kedepannya kamu menjadi pribadi yang lebih baik dari sebelumnya, terimakasih sudah menjadi perempuan yang kuat dan hebat, bahagia selalu yaa.
+            </div>
+            
+            <div class="heart-icon">❤️✨❤️</div>
+        </div>
+    </div>
+
+    <audio id="musikUltah" loop>
+        <source src="https://assets.mixkit.co/active_storage/sfx/123/123-200.wav" type="audio/wav">
+    </audio>
+
+    <script>
+        // Membuat efek hujan balon secara acak
+        const colors = ['#ff6b81', '#ff4757', '#74b9ff', '#a29bfe', '#ffeaa7', '#55efc4'];
+        const balloonContainer = document.getElementById('balloon-container');
+        
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.animationDuration = (Math.random() * 4 + 6) + 's'; // 6s - 10s
+            balloon Container.appendChild(balloon);
+            
+            // Hapus balon setelah terbang ke atas agar tidak membebani HP
+            setTimeout(() => {
+                balloon.remove();
+            }, 10000);
+        }
+
+        // Jalankan efek balon terus menerus
+        setInterval(createBalloon, 600);
+
+        // Fungsi ketika tombol kejutan atau kue diklik
+        function bukaKejutan() {
+            // Sembunyikan tampilan kue awal
+            document.getElementById('boxAwal').style.display = 'none';
+            
+            // Tampilkan surat ucapan dengan animasi halus
+            const boxSurat = document.getElementById('boxSurat');
+            boxSurat.style.display = 'block';
+            
+            // Putar audio instrumen selamat ulang tahun
+            const musik = document.getElementById('musikUltah');
+            musik.play().catch(function(error) {
+                console.log("Audio otomatis diblokir browser, memerlukan interaksi user.");
+            });
+            
+            // Bikin efek ledakan balon tambahan pas di klik
+            for(let i=0; i<15; i++) {
+                setTimeout(createBalloon, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
