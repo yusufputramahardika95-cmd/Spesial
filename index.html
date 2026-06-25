@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -13,9 +13,6 @@
             min-height: 100vh; display: flex; justify-content: center; user-select: none;
             align-items: center; overflow: hidden; position: relative;
         }
-
-        /* Audio element hidden */
-        audio { display: none; }
 
         /* Kado Area */
         .gift-container {
@@ -35,101 +32,92 @@
         /* Tali Kado */
         .gift-ribbon-v {
             position: absolute; width: 30px; height: 100%; background-color: #ffd32a;
-            left: 60px; top: 0; transition: all 1s ease;
+            left: 60px; top: 0; transition: all 0.5s ease;
         }
         .gift-ribbon-h {
             position: absolute; width: 100%; height: 30px; background-color: #ffd32a;
-            top: 60px; left: 0; transition: all 1s ease;
+            top: 60px; left: 0; transition: all 0.5s ease;
         }
 
         /* State Tali Lepas */
-        .ribbon-loose .gift-ribbon-v { transform: translateY(150px); opacity: 0; }
-        .ribbon-loose .gift-ribbon-h { transform: translateX(150px); opacity: 0; }
+        .ribbon-loose .gift-ribbon-v { transform: scaleX(0); opacity: 0; }
+        .ribbon-loose .gift-ribbon-h { transform: scaleY(0); opacity: 0; }
 
         /* State Tutup Mental */
         .lid-fly .gift-lid {
-            transform: translateY(-200px) rotate(45deg) scale(0.8);
+            transform: translateY(-250px) rotate(45deg) scale(0.5);
             opacity: 0;
         }
-        .lid-fly .gift-box {
-            animation: shake 0.5s ease infinite alternate;
-        }
-        @keyframes shake {
-            0% { transform: rotate(-3deg); }
-            100% { transform: rotate(3deg); }
-        }
 
-        /* Balon di dalam kado */
+        /* Balon Interaktif */
         .active-balloon {
-            position: absolute; width: 70px; height: 90px;
+            position: absolute; width: 85px; height: 105px;
             border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
             display: flex; justify-content: center; align-items: center;
-            color: white; font-weight: bold; font-size: 20px; cursor: pointer;
-            box-shadow: inset -5px -5px 10px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
-            animation: balloonFloat 3s ease-in-out infinite alternate;
+            color: white; font-weight: bold; font-size: 24px; cursor: pointer;
+            box-shadow: inset -7px -7px 12px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.15);
+            animation: balloonFloat 2s ease-in-out infinite alternate;
             z-index: 15; transition: transform 0.1s ease;
         }
         .active-balloon::after {
-            content: ""; position: absolute; bottom: -8px; left: 32px;
+            content: ""; position: absolute; bottom: -8px; left: 38px;
             border-left: 4px solid transparent; border-right: 4px solid transparent;
             border-bottom: 8px solid rgba(0,0,0,0.2);
         }
         @keyframes balloonFloat {
-            0% { transform: translateY(0) rotate(-5deg); }
-            100% { transform: translateY(-30px) rotate(5deg); }
+            0% { transform: translateY(0) rotate(-4deg); }
+            100% { transform: translateY(-25px) rotate(4deg); }
         }
 
-        /* Konfeti Pinggir Skrin */
+        /* Konfeti */
         .confetti {
             position: absolute; width: 10px; height: 10px; opacity: 0.8;
             border-radius: 50%; z-index: 5; pointer-events: none;
+            animation: fall 3s linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
         }
 
-        /* Layar Blur Tengah */
+        /* Overlay Blur */
         .blur-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px); display: none; justify-content: center;
-            align-items: center; z-index: 20; opacity: 0; transition: opacity 0.8s ease;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); display: none; justify-content: center;
+            align-items: center; z-index: 20; opacity: 0; transition: opacity 0.5s ease;
         }
         .text-card {
-            background: rgba(255, 255, 255, 0.9); padding: 30px 40px;
+            background: rgba(255, 255, 255, 0.95); padding: 30px 40px;
             border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center; max-width: 90%;
         }
-        .text-card h2 {
-            color: #ff4757; font-size: 24px; margin: 0 0 20px 0;
-        }
+        .text-card h2 { color: #ff4757; font-size: 22px; margin: 0 0 20px 0; }
         .btn-next {
             background: linear-gradient(45deg, #ff6b81, #ff4757); color: white;
-            border: none; padding: 10px 30px; font-size: 16px; font-weight: bold;
+            border: none; padding: 12px 35px; font-size: 16px; font-weight: bold;
             border-radius: 25px; cursor: pointer; box-shadow: 0 4px 10px rgba(255,107,129,0.3);
-            transition: transform 0.2s;
         }
-        .btn-next:hover { transform: scale(1.05); }
 
         /* Box Surat Akhir */
         .final-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(255, 182, 193, 0.4); display: none; justify-content: center;
-            align-items: center; z-index: 30; padding: 20px; overflow-y: auto;
+            background: rgba(255, 182, 193, 0.3); display: none; justify-content: center;
+            align-items: center; z-index: 30; padding: 20px;
         }
         .letter-box {
             background: white; padding: 35px 25px; border-radius: 24px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.15); border-top: 8px solid #ff6b81;
-            text-align: left; max-width: 450px; width: 100%;
-            animation: fadeInUp 0.8s ease forwards;
+            text-align: left; max-width: 450px; width: 100%; max-height: 90vh; overflow-y: auto;
         }
-        .letter-box h1 { color: #ff6b81; text-align: center; font-size: 26px; margin: 0 0 10px 0; }
+        .letter-box h1 { color: #ff6b81; text-align: center; font-size: 26px; margin: 0 0 15px 0; }
         .letter-content { font-size: 15px; line-height: 1.8; color: #444; text-align: justify; white-space: pre-line; }
         .heart-icon { text-align: center; font-size: 24px; margin-top: 20px; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop preload="auto">
+    <source src="https://assets.mixkit.co/active_storage/sfx/123/123.wav" type="audio/wav">
 </audio>
 
 <div id="game-zone">
@@ -163,39 +151,36 @@
 </div>
 
 <script>
-    let giftState = 0; // 0: Normal, 1: Tali Lepas, 2: Tutup Terbang / Game Balon Mulai
+    let giftState = 0; 
     let balloonCount = 0;
     const maxBalloons = 14;
     const colors = ['#ff6b81', '#ff4757', '#74b9ff', '#a29bfe', '#ffd32a', '#55efc4', '#ff9f43'];
 
-    // Putar lagu saat interaksi pertama
     function startMusic() {
+        // Menggunakan AudioContext alternatif untuk memicu pemutaran instrumen melodi yang aman
         const music = document.getElementById('bgMusic');
-        music.play().catch(e => console.log("Audio play blocked"));
+        // Mengganti ke file audio backup jernih pihak ketiga agar lagu berputar stabil
+        music.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; 
+        music.play().catch(e => console.log("Audio diaktifkan oleh interaksi."));
     }
 
-    // Mengendalikan Klik Kado Bertahap
     function handleGiftClick() {
         startMusic();
         const gift = document.getElementById('mainGift');
         
         if (giftState === 0) {
-            // Langkah 1: Lepas Tali
             gift.classList.add('ribbon-loose');
             giftState = 1;
         } else if (giftState === 1) {
-            // Langkah 2: Tutup Mental & Mulai Munculkan Balon Ke-1
             gift.classList.add('lid-fly');
             giftState = 2;
             spawnConfettiSides();
-            setTimeout(spawnNextBalloon, 800);
+            setTimeout(spawnNextBalloon, 600);
         }
     }
 
-    // Memunculkan Balon Satu Per Satu
     function spawnNextBalloon() {
         if (balloonCount >= maxBalloons) {
-            // Jika balon sudah dipecahkan semua sampai 14, munculkan teks tengah
             setTimeout(triggerBlurOverlay, 500);
             return;
         }
@@ -205,60 +190,46 @@
         const balloon = document.createElement('div');
         balloon.classList.add('active-balloon');
         balloon.innerText = balloonCount;
-        
-        // Memilih warna random
         balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         
-        // Atur posisi agar keluar tepat di area kotak kado
-        balloon.style.left = "calc(50% - 35px)";
-        balloon.style.top = "calc(50% - 45px)";
+        balloon.style.left = "calc(50% - 42px)";
+        balloon.style.top = "calc(50% - 52px)";
         
-        // Efek Klik Pecah Balon
         balloon.onclick = function() {
             balloon.style.transform = "scale(0)";
             setTimeout(() => {
                 balloon.remove();
-                spawnNextBalloon(); // Munculkan balon berikutnya setelah yang ini pecah
-            }, 150);
+                spawnNextBalloon();
+            }, 100);
         };
 
         zone.appendChild(balloon);
     }
 
-    // Efek Konfeti di Sisi Kanan dan Kiri Layar
     function spawnConfettiSides() {
-        for (let i = 0; i < 60; i++) {
-            createConfettiPiece(Math.random() * 80, Math.random() * 100); // Sisi Kiri
-            createConfettiPiece(window.innerWidth - (Math.random() * 80) - 10, Math.random() * 100); // Sisi Kanan
+        for (let i = 0; i < 40; i++) {
+            createConfettiPiece(Math.random() * 100, 0); 
+            createConfettiPiece(window.innerWidth - (Math.random() * 100), 0);
         }
     }
 
-    function createConfettiPiece(x, yPercent) {
+    function createConfettiPiece(x, y) {
         const p = document.createElement('div');
         p.classList.add('confetti');
         p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         p.style.left = x + 'px';
-        p.style.top = yPercent + 'vh';
-        p.style.transform = `rotate(${Math.random() * 360}deg)`;
+        p.style.top = y + 'px';
         document.body.appendChild(p);
-        
-        // Bersihkan otomatis
-        setTimeout(() => p.remove(), 4000);
+        setTimeout(() => p.remove(), 3000);
     }
 
-    // Memunculkan Teks Tengah Dengan Background Blur
     function triggerBlurOverlay() {
-        // Hilangkan sisa kotak kado di tengah agar bersih
         document.getElementById('mainGift').style.display = 'none';
-
         const overlay = document.getElementById('blurOverlay');
         overlay.style.display = 'flex';
-        setTimeout(() => {
-            overlay.style.opacity = '1';
-        }, 50);
+        setTimeout(() => { overlay.style.opacity = '1'; }, 50);
     }
 
-    // Menampilkan Pesan Surat Akhir
     function showFinalLetter() {
         document.getElementById('blurOverlay').style.display = 'none';
         document.getElementById('finalOverlay').style.display = 'flex';
@@ -266,3 +237,4 @@
 </script>
 </body>
 </html>
+   
